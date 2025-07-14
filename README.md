@@ -1,5 +1,6 @@
 # WeiKnight's OC Formula Book (WIP)
-
+[**简体中文**](README.zh-cn.md) | [English](#)   
+*(If you prefer Chinese, see [README.zh-cn.md](README.zh-CN.md).)*
 ## 📖 Content Introduction
 
 This is a comprehensive set of setting materials written for WeiKnight's original characters (OCs) and their associated worldview, which is mostly written in CHINESE, including:

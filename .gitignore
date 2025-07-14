@@ -69,3 +69,6 @@ replay_pid*
 # elegantbook模板
 **/elegantbook-cn.*
 **/reference.bib
+
+# README
+**/README.tmp.md

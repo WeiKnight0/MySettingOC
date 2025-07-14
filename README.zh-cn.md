@@ -1,5 +1,6 @@
 # WeiKnight的OC公式书 (WIP)
-
+[**English**](README.md) | [简体中文](#)  
+*(English version is available [here](README.md).)*
 ## 📖 内容介绍
 
 这是为WeiKnight的原创角色(OC)及其所属世界观编写的完整设定资料集，主要使用中文编写，包含：
