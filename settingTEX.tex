@@ -6,7 +6,7 @@
 \newcommand{\wkn}{WeiKnight}
 
 \title{\wkn{}设定与世界观公式书}
-\subtitle{基于理论模型的公式书}
+\subtitle{基于理论模型的设定公式书}
 
 \author{\wkn{}}
 % \institute{Elegant\LaTeX{} Program}
@@ -14,7 +14,7 @@
 % \version{4.5}
 % \bioinfo{自定义}{信息}
 
-\extrainfo{注意：本公式书且仅供娱乐}
+\extrainfo{注意：本公式书仅供娱乐}
 
 \setcounter{tocdepth}{3}
 
@@ -216,7 +216,7 @@
 % \begin{example}[常见符咒类型]
 常见的符咒类型：
 \begin{itemize}
-    \item \textbf{时域冲击符咒} $\delta$：使实用函数产生瞬时作用效果
+    \item \textbf{时域冲激符咒} $\delta$：使实用函数产生瞬时作用效果
           \[
               \delta F(x) = F(x)\cdot \delta(0)
           \]
@@ -579,14 +579,14 @@
 \subsection{二次元变换}
 
 \begin{definition}{二次元变换}
-    给定三次元对象 \( h(x,y,z) \) 和OC特征向量 \(\bm{k} \in \mathbb{R}^n\)，其二次元变换 \( H(\mj u,\,\mj v) \) 定义为：
+    给定三次元对象 \( h(x,y,z) \) 和特征向量 \(\bm{k}(u,v) \in \mathbb{R}^3\)，其二次元变换 \( H(\mj u,\,\mj v) \) 定义为：
     \[
         H(\mj u,\,\mj v) = \iiint_{\mathbb{R}^3} h(x,y,z) \cdot \me^{-\mj \bm{k} \cdot \bm{p}} \,\md x\,\md y\,\md z
     \]
     其中：
     \begin{itemize}
-        \item \(\bm{p}=\bm{p}(x,y,z)\) 是三—二次元转化函数
-        \item \(\bm{k}\) 是OC的特征向量
+        \item \(\bm{p}=(x,y,z)\) 是三—二次元转化函数
+        \item \(\bm{k}=(k_1(u),k_2(v),k_3(u,v))\) 是OC特征向量函数
         \item \(H(\mj u,\,\mj v)\) 是OC的描述函数
         \item \(h(x,y,z)\) 是OC的三次元本家
         \item \(\me^{-\mj \bm{k} \cdot \bm{p}}\) 称为核函数，是一个虚指数函数，反映了二次元世界的虚拟性。
@@ -606,10 +606,11 @@
             1 & \text{当 } 0 \leq x,y,z \leq 1 \\
             0 & \text{其他}
         \end{cases} \]
-    其二次元变换为：
-    \[ H(\mj u,\,\mj v) = \int_0^1 \int_0^1 \int_0^1 \me^{-\mj (k_1x + k_2y + k_3z)} \md x\,\md y\,\md z \]
+    取\(\bm{k}=(u,v,0)\)，其二次元变换为：
+    \[ H(\mj u,\,\mj v) = \int_0^1 \int_0^1 \int_0^1 \me^{-\mj (ux + vy)} \md x\,\md y\,\md z \]
     计算结果为：
-    \[ H(\mj u,\,\mj v) = \left(\frac{1 - \me^{-\mj k_1}}{\mj k_1}\right)\left(\frac{1 - \me^{-\mj k_2}}{\mj k_2}\right)\left(\frac{1 - \me^{-\mj k_3}}{\mj k_3}\right) \]
+    \[ H(\mj u,\,\mj v) = \left(\frac{1 - \me^{-\mj u}}{\mj u}\right)\left(\frac{1 - \me^{-\mj v}}{\mj v}\right)
+    \]
 \end{example}
 
 \subsection{二次元反变换}
@@ -621,30 +622,36 @@
     \]
     其中：
     \begin{itemize}
-        \item \(\bm{q}=\bm{q}(u,\,v)\) 是二—三次元转化函数
-              % \item 核函数 \( e^{j \bm{k} \cdot \bm{q}} \) 补偿丢失的深度信息
+        \item \(\bm{q}=(x,y,0)\) 是二—三次元转化函数
     \end{itemize}
 \end{definition}
 
 \begin{theorem}[信息损失]
-    数学上，二次元反变换是病态的(ill-posed)，因为：
+    数学上，从二维变换重建三维对象是病态的(ill-posed)，因为：
     \[
-        \dim(\mathbb{R}^2) < \dim(\mathbb{R}^3)
+        \dim(\text{domain}(H)) = 2 < 3 = \dim(\text{domain}(h))
     \]
-    需要正则化条件才能获得唯一解。
+    需要引入正则化条件或先验知识才能获得稳定解。
 \end{theorem}
 
-\begin{theorem}{OC反变换原理}{}
-    在二次元中，若反变换对象为OC，则其反变换得到的三次元本家是唯一的。
-    这是由于OC只属于唯一个体或群体。
+\begin{theorem}{OC反变换唯一性}
+    当二次元变换 \( H(\mj u,\,\mj v) \) 满足OC特征条件时，其反变换 \( h(x,y,z) \) 在以下约束下唯一：
+    \[
+        \exists z_0 \in \mathbb{R}, \quad \forall z \neq z_0, \ h(x,y,z) = 0
+    \]
+    这一平面约束补偿了缺失的维度信息。
 \end{theorem}
 
 \begin{example}
-    给定二次元OC函数：
-    \[ H(\mj u,\,\mj v) = \frac{\sin u}{u} \cdot \frac{\sin v}{v} \]
-    其对应的三次元本家可以通过反变换得到：
-    \[ h(x,y,z) = \iint_{\mathbb{R}^2} \frac{\sin u}{u} \cdot \frac{\sin v}{v} \cdot \me^{\mj (k_1u + k_2v)} \md u\,\md v \]
-    在特定条件下，该反变换会还原出一个三维矩形函数。
+    给定OC特征函数：
+    \[ H(\mj u,\,\mj v) = \operatorname{Sa}(u) \cdot \operatorname{Sa}(v), \quad \text{其中} \ \operatorname{Sa}(\xi) = \frac{\sin \xi}{\xi} \]
+    取OC特征向量 \(\bm{k} = (u, v, 0)\)，其反变换为：
+    \[ h(x,y,z) = \left( \iint_{\mathbb{R}^2} \operatorname{Sa}(u) \operatorname{Sa}(v) \cdot \me^{\mj (ux + vy)} \md u\,\md v \right) \cdot \delta(z) \]
+    计算结果为：
+    \[ h(x,y,z) = \operatorname{rect}(x) \operatorname{rect}(y) \delta(z), \quad \text{其中} \ \operatorname{rect}(\xi) = \begin{cases}
+            1 & |\xi| \leq \frac{1}{2} \\
+            0 & \text{其他}
+        \end{cases} \]
 \end{example}
 
 \chapter{世界观的基本介绍}
@@ -910,6 +917,14 @@ DR黑曜石平台上的熔岩纹路。​
         \frac{\partial (\varphi_1,\varphi_2)}{\partial (x,y,z)} \text{的秩} \geq 2
     \]
 \end{definition}
+
+\begin{theorem}{毛发-肌肉补偿定理}
+    在反变换中丢失的第三维信息可通过正则化条件：
+    \[
+        \arg\min_h \| \nabla_z h \|^2 + \lambda \| F - \mathcal{F}_F h \|^2
+    \]
+    部分恢复，其中\(\lambda\)由毛发密度决定。
+\end{theorem}
 
 下面给出标准二次元变换与福瑞变换的对比表格(表\ref{tab:FRT})。
 \begin{table}[H]
